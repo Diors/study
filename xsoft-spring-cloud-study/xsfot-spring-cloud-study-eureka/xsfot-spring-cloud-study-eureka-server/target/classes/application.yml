@@ -1,0 +1,29 @@
+server:
+  port: 3000
+spring:
+  application:
+    name: xsfot-eureka-center
+  security:
+      user:
+        name: xsoft  # 用户名
+        password: 123456   # 密码
+  cloud:
+    inetutils: ## 网卡设置
+      ignoredInterfaces:  ## 忽略的网卡
+        - docker0
+        - veth.*
+        - VM.*
+      preferredNetworks:  ## 优先的网段
+        - 192.168
+eureka:
+  instance:
+    hostname: eureka-center
+    appname: 注册中心
+  client:
+    registerWithEureka: false # 单点的时候设置为 false 禁止注册自身
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://soft:123456@localhost:3000/eureka
+  server:
+    enableSelfPreservation: false
+    evictionIntervalTimerInMs: 4000
